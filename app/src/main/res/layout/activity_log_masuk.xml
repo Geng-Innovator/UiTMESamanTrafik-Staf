@@ -1,18 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="30dp"
+    android:orientation="vertical"
     tools:context="com.seladanghijau.uitme_reportstaf.LogMasuk">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:text="UiTM E-Laporan"
+        android:layout_marginBottom="50dp"/>
+    
+    <EditText
+        android:id="@+id/edtNoPekerja"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="No Pekerja" />
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/edtKataLaluan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="Kata Laluan"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnLogMasuk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LOG MASUK" />
+
+</LinearLayout>
