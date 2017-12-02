@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="30dp"
+    android:orientation="vertical"
     tools:context="com.seladanghijau.uitme_reportstaf.Dashboard">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:text="UiTM E-Laporan"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:onClick="onClick"
+        android:id="@+id/btnProfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PROFIL" />
+
+    <Button
+        android:onClick="onClick"
+        android:id="@+id/btnLaporan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="LAPORAN BARU" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcyLaporan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

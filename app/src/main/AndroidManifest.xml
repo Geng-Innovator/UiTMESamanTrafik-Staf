@@ -19,7 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Daftar" />
-        <activity android:name=".Dashboard"></activity>
+        <activity android:name=".Dashboard" />
+        <activity android:name=".Profil" />
+        <activity android:name=".Info_Laporan" />
+        <activity android:name=".Laporan_Baru"></activity>
     </application>
 
 </manifest>
