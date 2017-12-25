@@ -23,41 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tarikh : " />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="11/11/2017" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Masa : " />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="1500" />
-            </LinearLayout>
-
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/edtTempat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -66,7 +33,7 @@
 
             <EditText
                 android:layout_marginTop="10dp"
-                android:id="@+id/editText2"
+                android:id="@+id/edtNoKenderaan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -74,7 +41,7 @@
                 android:hint="No. Kenderaan"/>
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/edtSiriPelekat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -93,7 +60,7 @@
                     android:text="Jenis Kenderaan : " />
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/spnJenisKenderaan"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -101,28 +68,32 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/edtPenerangan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:minHeight="200dp"
                 android:hint="Penerangan"
+                android:gravity="top"
                 android:inputType="textMultiLine" />
 
             <Button
-                android:id="@+id/button"
+                android:onClick="onClick"
+                android:id="@+id/btnMuatGambar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="MUAT NAIK GAMBAR" />
 
             <Button
-                android:id="@+id/button2"
+                android:onClick="onClick"
+                android:id="@+id/btnHantar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="HANTAR" />
 
             <Button
-                android:id="@+id/button3"
+                android:onClick="onClick"
+                android:id="@+id/btnBatal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="BATAL" />

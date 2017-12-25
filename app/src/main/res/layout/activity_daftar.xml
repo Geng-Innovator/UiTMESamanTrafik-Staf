@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,64 +17,28 @@
         android:text="UiTM E-Laporan"
         android:layout_marginBottom="30dp"/>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:text="No. Pekerja : "
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/txtNoPekerja"
-            android:text="KB39127"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
-
-        <TextView
-            android:text="No. IC : "
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/txtIC"
-            android:text="951203115195"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
     <EditText
-        android:id="@+id/edtNoTelefon"
+        android:id="@+id/edtKataLaluanBaru"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="No Pekerja" />
+        android:hint="Katalaluan baru" />
 
     <EditText
-        android:id="@+id/edtKataLaluan2"
+        android:id="@+id/edtKataLaluanBaru2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="Kata Laluan"
+        android:hint="Konformasi katalaluan baru"
         android:inputType="textPassword" />
 
     <Button
+        android:onClick="onClick"
         android:id="@+id/btnDaftar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="DAFTAR" />
 
 </LinearLayout>

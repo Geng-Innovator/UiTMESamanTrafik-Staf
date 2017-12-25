@@ -1,5 +1,6 @@
 package com.seladanghijau.uitme_reportstaf;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,17 +41,29 @@ public class LogMasuk extends AppCompatActivity implements View.OnClickListener{
                     @Override
                     public void onResponse(String response) {
                         try{
-                            //Get the JSON array
-                            //JSONArray array = response.getJSONArray("pekerja");
+                            //Get the JSON object from the server, Response will return status and data
                             JSONObject obj = new JSONObject(response);
-                            Pekerja pekerja = new Pekerja();
-                            pekerja.setId(obj.getLong("id"));
-                            pekerja.setNama(obj.getString("name"));
-                            pekerja.setEmel(obj.getString("email"));
-                            pekerja.setPassword(obj.getString("password"));
+                            //Get status from the server. 0 - Failed, 1 - Success
+                            if (obj.getBoolean("status")){
+                                JSONObject data = obj.getJSONObject("data");
+                                //Check Log Pertama
+                                boolean log_pertama = data.getBoolean("log_pertama");
+                                if (log_pertama){ //First time log in
+                                    //Redirect to daftar
+                                    Intent i = new Intent(LogMasuk.this, Daftar.class);
+                                    i.putExtra("id", data.getString("id"));
+                                    i.putExtra("cur_pass", data.getString("password"));
+                                    startActivity(i);
+                                }else{
+                                    //Redirect to dashboard and input id into shared preferences
+                                    startActivity(new Intent(LogMasuk.this, Dashboard.class));
+                                    finish();
+                                }
+                            }else{
+                                //Redirect to log masuk
+                                Toast.makeText(LogMasuk.this, "Log Masuk gagal", Toast.LENGTH_SHORT).show();
+                            }
 
-                            Log.d("Nama", pekerja.getNama());
-                            Toast.makeText(getApplicationContext(), pekerja.getNama(), Toast.LENGTH_SHORT).show();
                         }catch (Exception e){
                             e.printStackTrace();
                         }
@@ -58,7 +71,7 @@ public class LogMasuk extends AppCompatActivity implements View.OnClickListener{
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Login error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Log Masuk error", Toast.LENGTH_SHORT).show();
                     }
                 }){
                     @Override
@@ -66,8 +79,8 @@ public class LogMasuk extends AppCompatActivity implements View.OnClickListener{
                         Map<String, String> params;
 
                         params = new HashMap<>();
-                        params.put("email", "Test@gmail.com");
-                        params.put("password", "test");
+                        params.put("no_pekerja", "");
+                        params.put("password", "");
 
                         return params;
                     }
@@ -76,7 +89,7 @@ public class LogMasuk extends AppCompatActivity implements View.OnClickListener{
                 requestQueue.add(loginRequest);
 
             }catch (Exception e){
-                Toast.makeText(getApplicationContext(), "There seems to be an error with your internet connectivity", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Terdapat masalah dengan rangkaian internet anda", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }
