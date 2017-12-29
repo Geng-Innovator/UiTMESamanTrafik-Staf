@@ -1,6 +1,8 @@
 package com.seladanghijau.uitme_reportstaf;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +25,9 @@ import java.util.Map;
 public class Daftar extends AppCompatActivity implements View.OnClickListener{
 
     private EditText edtKataLaluan, edtKataLaluan2;
+    private int id;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,8 @@ public class Daftar extends AppCompatActivity implements View.OnClickListener{
 
         edtKataLaluan = findViewById(R.id.edtKataLaluanBaru);
         edtKataLaluan2 = findViewById(R.id.edtKataLaluanBaru2);
+
+        sharedPreferences = getSharedPreferences(LogMasuk.pekerjaPrefs, Context.MODE_PRIVATE);
     }
 
     public boolean validatePssword(){
@@ -42,7 +49,7 @@ public class Daftar extends AppCompatActivity implements View.OnClickListener{
         if (v.getId() == R.id.btnDaftar){
             try{
                 RequestQueue requestQueue = Volley.newRequestQueue(this);
-                String url = "http://test-ground.000webhostapp.com/register.php";
+                String url = "http://beta.seladanghijau.com/uitm_e_laporan/public/staf/reset-password";
                 StringRequest daftarRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -50,7 +57,12 @@ public class Daftar extends AppCompatActivity implements View.OnClickListener{
                             //Get the JSON object from the server
                             JSONObject obj = new JSONObject(response);
                             //Get status from the server. 0 - Failed, 1 - Success
-                            if (obj.getBoolean("status")){
+                            if (obj.getString("status").equalsIgnoreCase("1")){
+                                //Insert into shared preferences
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(LogMasuk.id, ""+id);
+                                editor.commit();
+
                                 //Redirect to dashboard
                                 startActivity(new Intent(Daftar.this, Dashboard.class));
                                 finish();
@@ -76,13 +88,13 @@ public class Daftar extends AppCompatActivity implements View.OnClickListener{
                         Map<String, String> params;
                         if (validatePssword()) {
                             //Get intent data
-                            String id = getIntent().getStringExtra("id");
+                            id = getIntent().getIntExtra("id", 0);
                             String cur_pass = getIntent().getStringExtra("cur_pass");
 
                             params = new HashMap<>();
-                            params.put("id", id); //User id for query
+                            params.put("pekerja_id", ""+id); //User id for query
                             params.put("cur_pass", cur_pass); //default password
-                            params.put("new_pass", "nana"); //user input password
+                            params.put("new_pass", edtKataLaluan.getText().toString().trim()); //user input password
                             return params;
                         }else{
                             Toast.makeText(Daftar.this, "Katalaluan anda tidak sama", Toast.LENGTH_SHORT).show();

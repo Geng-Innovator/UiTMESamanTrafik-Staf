@@ -24,14 +24,14 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="No Pekerja" />
+        android:hint="No Pekerja" />
 
     <EditText
         android:id="@+id/edtKataLaluan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="Kata Laluan"
+        android:hint="Kata Laluan"
         android:inputType="textPassword" />
 
     <Button
