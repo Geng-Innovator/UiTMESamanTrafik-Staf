@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">UiTM E-Report (Staf)</string>
+    <string name="url_kenderaan">http://beta.seladanghijau.com/uitm_e_laporan/public/staf/form/laporan/hantar-laporan</string>
+    <string name="dashboard">http://beta.seladanghijau.com/uitm_e_laporan/public/staf/dashboard</string>
 </resources>

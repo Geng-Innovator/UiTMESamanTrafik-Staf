@@ -12,9 +12,9 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imgReport"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="250dp"
             app:srcCompat="@mipmap/ic_launcher" />
 
         <LinearLayout
@@ -59,11 +59,15 @@
                     android:layout_height="wrap_content"
                     android:text="Jenis Kenderaan : " />
 
-                <Spinner
-                    android:id="@+id/spnJenisKenderaan"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                <RelativeLayout
+                    android:background="@color/colorAccent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Spinner
+                        android:id="@+id/spnJenisKenderaan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
 
             </LinearLayout>
 
