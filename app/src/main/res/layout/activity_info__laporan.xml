@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imgInfo"
             android:layout_width="match_parent"
             android:layout_height="170dp"
             app:srcCompat="@mipmap/ic_launcher" />
@@ -31,18 +31,17 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Status : " />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/txtInfoStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text=" SEDANG DIJADUALKAN" />
+                    android:text="SEDANG DIJADUALKAN" />
             </LinearLayout>
 
             <LinearLayout
@@ -62,6 +61,7 @@
                         android:text="ID Laporan : " />
 
                     <TextView
+                        android:id="@+id/txtInfoID"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -78,6 +78,7 @@
                         android:text="Tarikh : " />
 
                     <TextView
+                        android:id="@+id/txtInfoTarikh"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -94,6 +95,7 @@
                         android:text="Masa : " />
 
                     <TextView
+                        android:id="@+id/txtInfoMasa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -110,6 +112,7 @@
                         android:text="Tempat : " />
 
                     <TextView
+                        android:id="@+id/txtInfoTempat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -133,6 +136,7 @@
                         android:text="No Kenderaan : " />
 
                     <TextView
+                        android:id="@+id/txtInfoNoKenderaan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -149,6 +153,7 @@
                         android:text="No Siri Pelekat : " />
 
                     <TextView
+                        android:id="@+id/txtInfoSiriPelekat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -165,10 +170,28 @@
                         android:text="Jenis Kenderaan : " />
 
                     <TextView
+                        android:id="@+id/txtInfoKenderaan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Kereta" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Status Kenderaan : " />
+
+                    <TextView
+                        android:id="@+id/txtInfoStatusKenderaan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="DISAMAN" />
                 </LinearLayout>
             </LinearLayout>
             <TextView
@@ -177,6 +200,7 @@
                 android:text="Penerangan Staf : " />
 
             <TextView
+                android:id="@+id/txtInfoPeneranganStaf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Bla bla bla bla" />
@@ -188,6 +212,7 @@
                 android:text="Laporan Polis : " />
 
             <TextView
+                android:id="@+id/txtInfoLaporanPolis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Bla bla bla bla" />
@@ -199,10 +224,11 @@
                 android:text="Kesalahan : " />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rcyKesalahan"
+                android:id="@+id/rcyInfoKesalahan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <!--
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
@@ -212,9 +238,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bla bla bla bla" />
+                android:text="Bla bla bla bla" />-->
 
             <Button
+                android:onClick="onClick"
                 android:layout_marginTop="10dp"
                 android:id="@+id/btnInfoKembali"
                 android:text="KEMBALI"

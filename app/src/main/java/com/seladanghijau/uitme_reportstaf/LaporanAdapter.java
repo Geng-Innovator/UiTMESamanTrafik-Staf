@@ -71,7 +71,7 @@ public class LaporanAdapter extends RecyclerView.Adapter<LaporanAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Laporan laporan = laporanList.get(position);
+        final Laporan laporan = laporanList.get(position);
         holder.imgLaporan.setImageBitmap(decodeBase64(laporan.getLaporan_imej()));
         holder.txtTempat.setText(laporan.getLaporan_tempat());
         holder.txtTarikh.setText(laporan.getLaporan_tarikh());
@@ -88,7 +88,10 @@ public class LaporanAdapter extends RecyclerView.Adapter<LaporanAdapter.MyViewHo
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
-                context.startActivity(new Intent(context, Info_Laporan.class));
+                //Pass id kat sini
+                Intent i = new Intent(context, Info_Laporan.class);
+                i.putExtra("id", laporan.getId());
+                context.startActivity(i);
             }
         });
     }
