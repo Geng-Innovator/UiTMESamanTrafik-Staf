@@ -95,7 +95,7 @@ public class LogMasuk extends AppCompatActivity implements View.OnClickListener{
                                 if (log_pertama.equalsIgnoreCase("1")){ //First time log in
                                     //Redirect to daftar
                                     Intent i = new Intent(LogMasuk.this, Daftar.class);
-                                    i.putExtra("id", data.getInt("id"));
+                                    i.putExtra("id", data.getInt("staf_id"));
                                     i.putExtra("cur_pass", ((EditText)findViewById(R.id.edtKataLaluan)).getText().toString().trim());
                                     startActivity(i);
                                     finish();
