@@ -33,7 +33,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
 
     public static final String id = "ID";
     public static final String pekerjaPrefs = "pekerjaPref";
-    private String pekerja_id;
+    private String staf_id;
     private LaporanAdapter laporanAdapter;
     private RecyclerView recyclerView;
     private List<Laporan> laporanList = new ArrayList<>();
@@ -44,7 +44,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_dashboard);
 
         SharedPreferences sharedPreferences = getSharedPreferences(Dashboard.pekerjaPrefs, Context.MODE_PRIVATE);
-        pekerja_id = sharedPreferences.getString(id, "");
+        staf_id = sharedPreferences.getString(id, "");
 
         recyclerView = findViewById(R.id.rcyLaporan);
         laporanAdapter = new LaporanAdapter(laporanList, this);
@@ -100,7 +100,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("staf_id", pekerja_id);
+                params.put("staf_id", staf_id);
                 return params;
             }
         };

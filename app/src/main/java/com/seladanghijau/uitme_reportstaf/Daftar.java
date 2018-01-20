@@ -92,7 +92,7 @@ public class Daftar extends AppCompatActivity implements View.OnClickListener{
                             String cur_pass = getIntent().getStringExtra("cur_pass");
 
                             params = new HashMap<>();
-                            params.put("pekerja_id", ""+id); //User id for query
+                            params.put("staf_id", ""+id); //User id for query
                             params.put("cur_pass", cur_pass); //default password
                             params.put("new_pass", edtKataLaluan.getText().toString().trim()); //user input password
                             return params;
