@@ -56,9 +56,9 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     }
 
     private void prepareLaporan(){
-
+        String url = getResources().getString(R.string.url_dashboard);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest laporanRequest = new StringRequest(Request.Method.POST, getResources().getString(R.string.dashboard), new Response.Listener<String>() {
+        StringRequest laporanRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{

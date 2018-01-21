@@ -49,7 +49,7 @@ public class Daftar extends AppCompatActivity implements View.OnClickListener{
         if (v.getId() == R.id.btnDaftar){
             try{
                 RequestQueue requestQueue = Volley.newRequestQueue(this);
-                String url = "http://beta.seladanghijau.com/uitm_e_laporan/public/staf/reset-password";
+                String url = getResources().getString(R.string.url_daftar);
                 StringRequest daftarRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

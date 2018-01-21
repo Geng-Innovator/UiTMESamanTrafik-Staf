@@ -80,7 +80,7 @@ public class LogMasuk extends AppCompatActivity implements View.OnClickListener{
 
             try{
                 RequestQueue requestQueue = Volley.newRequestQueue(this);
-                String url = "http://beta.seladanghijau.com/uitm_e_laporan/public/staf/log-masuk";
+                String url = getResources().getString(R.string.url_log_masuk);
                 StringRequest loginRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -102,7 +102,7 @@ public class LogMasuk extends AppCompatActivity implements View.OnClickListener{
                                 }else{
                                     //Redirect to dashboard and input id into shared preferences
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                                    editor.putString(id, data.getString("id"));
+                                    editor.putString(id, data.getString("staf_id"));
                                     editor.commit();
 
                                     startActivity(new Intent(LogMasuk.this, Dashboard.class));

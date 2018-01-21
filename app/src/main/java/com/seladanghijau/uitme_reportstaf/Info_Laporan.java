@@ -70,8 +70,9 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
     }
 
     public void getLaporan(final String id){
+        String url = getResources().getString(R.string.url_laporan);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest laporanRequest = new StringRequest(Request.Method.POST, getResources().getString(R.string.laporan), new Response.Listener<String>() {
+        StringRequest laporanRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
