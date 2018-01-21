@@ -130,7 +130,7 @@ public class Laporan_Baru extends AppCompatActivity implements View.OnClickListe
             //Send the report
             try{
                 RequestQueue requestQueue = Volley.newRequestQueue(this);
-                String url = "http://beta.seladanghijau.com/uitm_e_laporan/public/staf/laporan/hantar-laporan";
+                String url = getResources().getString(R.string.url_laporan_baru);
                 StringRequest laporanRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

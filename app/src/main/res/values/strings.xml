@@ -7,4 +7,5 @@
     <string name="url_dashboard">http://192.168.220.1:80/uitm_e_laporan/public/staf/dashboard</string>
     <string name="url_laporan">http://192.168.220.1:80/uitm_e_laporan/public/staf/laporan/info</string>
     <string name="url_kenderaan">http://192.168.220.1:80/uitm_e_laporan/public/staf/form/laporan/hantar-laporan</string>
+    <string name="url_laporan_baru">http://192.168.220.1:80/uitm_e_laporan/public/staf/laporan/hantar-laporan</string>
 </resources>
