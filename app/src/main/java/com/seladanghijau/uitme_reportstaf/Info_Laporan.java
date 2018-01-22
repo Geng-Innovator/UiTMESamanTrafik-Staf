@@ -2,6 +2,7 @@ package com.seladanghijau.uitme_reportstaf;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -26,6 +27,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -82,7 +85,11 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
                     //Get status from the server. 0 - Failed, 1 - Success
                     if (obj.getString("status").equalsIgnoreCase("1")){
                         JSONObject data = obj.getJSONObject("data");
-                        imgLaporan.setImageBitmap(decodeBase64(data.getString("staf_imej")));
+
+                        // load image
+                        LoadImageFromUrl loadImageFromUrl = new LoadImageFromUrl(imgLaporan);
+                        loadImageFromUrl.execute(data.getString("staf_imej"));
+
                         txtLaporanID.setText(data.getString("id"));
                         txtLaporanStatus.setText(data.getString("laporan_status"));
                         txtLaporanMasa.setText(data.getString("laporan_masa"));
@@ -128,8 +135,30 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
         //Hello
     }
 
-    private static Bitmap decodeBase64(String input){
-        byte[] decodeBytes = Base64.decode(input, 0);
-        return BitmapFactory.decodeByteArray(decodeBytes, 0, decodeBytes.length);
+    // asynctask utk load image from url
+    class LoadImageFromUrl extends AsyncTask<String, Void, Bitmap> {
+        ImageView imageView;
+
+        public LoadImageFromUrl(ImageView imageView) {
+            this.imageView = imageView;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... url) {
+            Bitmap imageBitmap = null;
+
+            try {
+                InputStream is = new URL(url[0]).openStream();
+                imageBitmap = BitmapFactory.decodeStream(is);
+            } catch (Exception e) { e.printStackTrace(); }
+
+            return imageBitmap;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            if(bitmap != null)
+                imageView.setImageBitmap(bitmap);
+        }
     }
 }
