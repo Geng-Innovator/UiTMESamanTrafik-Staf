@@ -120,7 +120,7 @@ public class LogMasuk extends AppCompatActivity implements View.OnClickListener{
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Log Masuk error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Log Masuk gagal", Toast.LENGTH_SHORT).show();
                     }
                 }){
                     @Override
