@@ -112,9 +112,9 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
                         txtJenisKenderaan.setText(data.getString("kenderaan_jenis"));
                         txtStatusKenderaan.setText(data.getString("kenderaan_status"));
                         txtPelekatKenderaan.setText(data.getString("no_siri_pelekat"));
-                        Log.d("List", data.getString("kesalahan_list"));
-                        for (int i=1; i<=3; i++){
-                            kesalahanList.add("Kesalahan " + i);
+                        JSONArray jsonArray = data.getJSONArray("kesalahan_list");
+                        for (int i=0; i<jsonArray.length(); i++){
+                            kesalahanList.add(jsonArray.getString(i));
                             adapter.notifyDataSetChanged();
                         }
                     }else{
