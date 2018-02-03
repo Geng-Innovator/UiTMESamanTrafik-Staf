@@ -43,7 +43,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(Dashboard.pekerjaPrefs, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(pekerjaPrefs, Context.MODE_PRIVATE);
         staf_id = sharedPreferences.getString(id, "");
 
         recyclerView = findViewById(R.id.rcyLaporan);

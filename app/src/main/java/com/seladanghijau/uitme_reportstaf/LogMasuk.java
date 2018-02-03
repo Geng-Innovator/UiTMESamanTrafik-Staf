@@ -103,6 +103,7 @@ public class LogMasuk extends AppCompatActivity implements View.OnClickListener{
                                     //Redirect to dashboard and input id into shared preferences
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString(id, data.getString("staf_id"));
+                                    editor.putString("cur_pass", ((EditText)findViewById(R.id.edtKataLaluan)).getText().toString().trim());
                                     editor.commit();
 
                                     startActivity(new Intent(LogMasuk.this, Dashboard.class));

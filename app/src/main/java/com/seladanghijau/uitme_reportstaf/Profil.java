@@ -1,6 +1,7 @@
 package com.seladanghijau.uitme_reportstaf;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,12 +53,12 @@ public class Profil extends AppCompatActivity implements View.OnClickListener{
                     if (obj.getString("status").equalsIgnoreCase("1")) {
                         JSONObject data = obj.getJSONObject("data");
 
-                        ((TextView) findViewById(R.id.txtNoPekerja)).setText(data.getString("no_pekerja"));
-                        ((TextView) findViewById(R.id.txtNoIC)).setText(data.getString("no_ic"));
-                        ((TextView) findViewById(R.id.txtNoHP)).setText(data.getString("no_tel_hp"));
-                        ((TextView) findViewById(R.id.txtNoPejabat)).setText(data.getString("no_tel_pej"));
-                        ((TextView) findViewById(R.id.txtJawatan)).setText(data.getString("jawatan_nama"));
-                        ((TextView) findViewById(R.id.txtJabatan)).setText(data.getString("jabatan"));
+                        ((TextView) findViewById(R.id.txtNoPekerjaProfil)).setText(data.getString("no_pekerja"));
+                        ((TextView) findViewById(R.id.txtNoICProfil)).setText(data.getString("no_ic"));
+                        ((TextView) findViewById(R.id.txtNoHPProfil)).setText(data.getString("no_tel_hp"));
+                        ((TextView) findViewById(R.id.txtNoPejabatProfil)).setText(data.getString("no_tel_pej"));
+                        ((TextView) findViewById(R.id.txtJawatanProfil)).setText(data.getString("jawatan_nama"));
+                        ((TextView) findViewById(R.id.txtJabatanProfil)).setText(data.getString("jabatan"));
                     }else{
                         Toast.makeText(Profil.this, "Profil tidak dijumpai", Toast.LENGTH_SHORT).show();
                     }
@@ -85,9 +86,13 @@ public class Profil extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btnUbahProfil:
+            case R.id.btnLogOut:
+                SharedPreferences settings = getSharedPreferences(Dashboard.pekerjaPrefs, Context.MODE_PRIVATE);
+                settings.edit().clear().apply();
+                startActivity(new Intent(Profil.this, LogMasuk.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 break;
             case R.id.btnUbahKataLaluan:
+                startActivity(new Intent(Profil.this, Daftar.class));
                 break;
             case R.id.btnKembali:
                 finish();

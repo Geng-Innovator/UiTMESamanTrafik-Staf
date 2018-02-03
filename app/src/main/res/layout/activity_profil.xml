@@ -30,11 +30,10 @@
             android:textColor="@color/secondaryColor"/>
 
         <TextView
-            android:id="@+id/txtNoPekerja"
+            android:id="@+id/txtNoPekerjaProfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" TextView"
             android:textColor="@color/secondaryColor"/>
     </LinearLayout>
 
@@ -52,11 +51,10 @@
             android:textColor="@color/secondaryColor"/>
 
         <TextView
-            android:id="@+id/txtNoIC"
+            android:id="@+id/txtNoICProfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" TextView"
             android:textColor="@color/secondaryColor" />
     </LinearLayout>
 
@@ -73,11 +71,10 @@
             android:textColor="@color/secondaryColor" />
 
         <TextView
-            android:id="@+id/txtNoHP"
+            android:id="@+id/txtNoHPProfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" TextView"
             android:textColor="@color/secondaryColor"/>
     </LinearLayout>
 
@@ -95,11 +92,10 @@
             android:textColor="@color/secondaryColor"/>
 
         <TextView
-            android:id="@+id/txtNoPejabat"
+            android:id="@+id/txtNoPejabatProfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" TextView"
             android:textColor="@color/secondaryColor"/>
     </LinearLayout>
 
@@ -116,11 +112,10 @@
             android:textColor="@color/secondaryColor"/>
 
         <TextView
-            android:id="@+id/txtJawatan"
+            android:id="@+id/txtJawatanProfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" TextView"
             android:textColor="@color/secondaryColor" />
     </LinearLayout>
 
@@ -137,23 +132,13 @@
             android:textColor="@color/secondaryColor" />
 
         <TextView
-            android:id="@+id/txtJabatan"
+            android:id="@+id/txtJabatanProfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" TextView"
             android:textStyle="bold"
             android:textColor="@color/secondaryColor" />
     </LinearLayout>
-
-    <Button
-        android:onClick="onClick"
-        android:id="@+id/btnUbahProfil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="UBAH PROFIL"
-        android:background="@drawable/draw_button_bg"
-        android:textColor="@color/colorPrimary" />
 
     <Button
         android:onClick="onClick"
@@ -161,9 +146,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="UBAH KATA LALUAN"
-        android:layout_marginTop="5dp"
         android:background="@drawable/draw_button_bg"
         android:textColor="@color/colorPrimary"/>
+
+    <Button
+        android:onClick="onClick"
+        android:id="@+id/btnLogOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LOG KELUAR"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/draw_button_bg"
+        android:textColor="@color/colorPrimary" />
 
     <Button
         android:onClick="onClick"
