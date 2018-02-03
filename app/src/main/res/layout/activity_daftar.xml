@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="DAFTAR"
+        android:text="TUKAR KATA LALUAN"
         android:textColor="@color/colorPrimary"
         android:background="@drawable/draw_button_bg"/>
 

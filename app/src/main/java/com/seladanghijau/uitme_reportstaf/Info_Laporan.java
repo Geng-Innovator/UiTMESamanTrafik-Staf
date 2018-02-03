@@ -90,6 +90,18 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
                         LoadImageFromUrl loadImageFromUrl = new LoadImageFromUrl(imgLaporan);
                         loadImageFromUrl.execute(data.getString("staf_imej"));
 
+                        switch(data.getString("laporan_status")) {
+                            case "DILAPORKAN":
+                                txtLaporanStatus.setBackground(getResources().getDrawable(R.drawable.status_laporan_dilaporkan));
+                                break;
+                            case "DIJADUALKAN":
+                                txtLaporanStatus.setBackground(getResources().getDrawable(R.drawable.status_laporan_dijadualkan));
+                                break;
+                            case "DIKUATKUASAKAN":
+                                txtLaporanStatus.setBackground(getResources().getDrawable(R.drawable.status_laporan_dikuatkuasakan));
+                                break;
+                        }
+
                         txtLaporanID.setText(data.getString("id"));
                         txtLaporanStatus.setText(data.getString("laporan_status"));
                         txtLaporanMasa.setText(data.getString("laporan_masa"));
