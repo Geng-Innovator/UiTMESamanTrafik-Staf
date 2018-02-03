@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/UiTMEReport-Staf.iml" filepath="$PROJECT_DIR$/.idea/UiTMEReport-Staf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UiTMEReport-Staf.iml" filepath="$PROJECT_DIR$/UiTMEReport-Staf.iml" />
+      <module fileurl="file://C:\Users\Seladang Hijau\Desktop\UiTMEReport-Staf\.idea\UiTMEReport-Staf.iml" filepath="C:\Users\Seladang Hijau\Desktop\UiTMEReport-Staf\.idea\UiTMEReport-Staf.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

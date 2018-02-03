@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:padding="30dp"
     android:orientation="vertical"
+    android:background="@color/colorPrimary"
     tools:context="com.seladanghijau.uitme_reportstaf.Profil">
 
     <ImageView
@@ -24,14 +25,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" No. Pekerja :" />
+            android:text=" No. Pekerja :"
+            android:textStyle="bold"
+            android:textColor="@color/secondaryColor"/>
 
         <TextView
             android:id="@+id/txtNoPekerja"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" TextView" />
+            android:text=" TextView"
+            android:textColor="@color/secondaryColor"/>
     </LinearLayout>
 
     <LinearLayout
@@ -43,14 +47,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" No. IC :" />
+            android:text=" No. IC :"
+            android:textStyle="bold"
+            android:textColor="@color/secondaryColor"/>
 
         <TextView
             android:id="@+id/txtNoIC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" TextView" />
+            android:text=" TextView"
+            android:textColor="@color/secondaryColor" />
     </LinearLayout>
 
     <LinearLayout
@@ -61,14 +68,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" No. Tel. HP :" />
+            android:text=" No. Tel. HP :"
+            android:textStyle="bold"
+            android:textColor="@color/secondaryColor" />
 
         <TextView
             android:id="@+id/txtNoHP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" TextView" />
+            android:text=" TextView"
+            android:textColor="@color/secondaryColor"/>
     </LinearLayout>
 
     <LinearLayout
@@ -80,14 +90,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" No. Tel. Pejabat :" />
+            android:text=" No. Tel. Pejabat :"
+            android:textStyle="bold"
+            android:textColor="@color/secondaryColor"/>
 
         <TextView
             android:id="@+id/txtNoPejabat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" TextView" />
+            android:text=" TextView"
+            android:textColor="@color/secondaryColor"/>
     </LinearLayout>
 
     <LinearLayout
@@ -98,14 +111,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jawatan  :" />
+            android:text="Jawatan  :"
+            android:textStyle="bold"
+            android:textColor="@color/secondaryColor"/>
 
         <TextView
             android:id="@+id/txtJawatan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" TextView" />
+            android:text=" TextView"
+            android:textColor="@color/secondaryColor" />
     </LinearLayout>
 
     <LinearLayout
@@ -117,14 +133,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jabatan  :" />
+            android:text="Jabatan  :"
+            android:textColor="@color/secondaryColor" />
 
         <TextView
             android:id="@+id/txtJabatan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" TextView" />
+            android:text=" TextView"
+            android:textStyle="bold"
+            android:textColor="@color/secondaryColor" />
     </LinearLayout>
 
     <Button
@@ -132,19 +151,27 @@
         android:id="@+id/btnUbahProfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="UBAH PROFIL" />
+        android:text="UBAH PROFIL"
+        android:background="@drawable/draw_button_bg"
+        android:textColor="@color/colorPrimary" />
 
     <Button
         android:onClick="onClick"
         android:id="@+id/btnUbahKataLaluan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="UBAH KATA LALUAN" />
+        android:text="UBAH KATA LALUAN"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/draw_button_bg"
+        android:textColor="@color/colorPrimary"/>
 
     <Button
         android:onClick="onClick"
         android:id="@+id/btnKembali"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="KEMBALI" />
+        android:text="KEMBALI"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/draw_button_bg"
+        android:textColor="@color/colorPrimary" />
 </LinearLayout>
