@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context="com.seladanghijau.uitme_reportstaf.Laporan_Baru">
 
     <LinearLayout
@@ -15,7 +16,8 @@
             android:id="@+id/imgReport"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher"
+            android:scaleType="fitCenter"/>
 
         <LinearLayout
             android:orientation="vertical"
@@ -27,29 +29,42 @@
                 android:id="@+id/edtTempat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Tempat"/>
+                android:hint="Tempat"
+                android:background="@drawable/draw_edit_text_bg"
+                android:textColor="@color/secondaryColor"
+                android:textColorHint="@color/secondaryColor"/>
 
             <EditText
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:id="@+id/edtNoKenderaan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="No. Kenderaan"/>
+                android:hint="No. Kenderaan"
+                android:background="@drawable/draw_edit_text_bg"
+                android:textColor="@color/secondaryColor"
+                android:textColorHint="@color/secondaryColor"/>
 
             <EditText
+                android:layout_marginTop="5dp"
                 android:id="@+id/edtSiriPelekat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="No. Siri Pelekat"/>
+                android:hint="No. Siri Pelekat"
+                android:background="@drawable/draw_edit_text_bg"
+                android:textColor="@color/secondaryColor"
+                android:textColorHint="@color/secondaryColor"/>
 
             <LinearLayout
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -57,7 +72,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jenis Kenderaan : " />
+                    android:text="Jenis Kenderaan : "
+                    android:textColor="@color/secondaryColor"/>
 
                 <RelativeLayout
                     android:background="@color/colorAccent"
@@ -75,32 +91,45 @@
                 android:id="@+id/edtPenerangan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginTop="5dp"
                 android:ems="10"
-                android:minHeight="200dp"
                 android:hint="Penerangan"
                 android:gravity="top"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:background="@drawable/draw_edit_text_bg"
+                android:textColor="@color/secondaryColor"
+                android:textColorHint="@color/secondaryColor" />
 
             <Button
                 android:onClick="onClick"
                 android:id="@+id/btnMuatGambar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="MUAT NAIK GAMBAR" />
+                android:layout_marginTop="20dp"
+                android:text="MUAT NAIK GAMBAR"
+                android:background="@drawable/draw_button_bg"
+                android:textColor="@color/colorPrimary" />
 
             <Button
                 android:onClick="onClick"
                 android:id="@+id/btnHantar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HANTAR" />
+                android:layout_marginTop="5dp"
+                android:text="HANTAR"
+                android:background="@drawable/draw_button_bg"
+                android:textColor="@color/colorPrimary"/>
 
             <Button
                 android:onClick="onClick"
                 android:id="@+id/btnBatal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BATAL" />
+                android:layout_marginTop="5dp"
+                android:text="BATAL"
+                android:background="@drawable/draw_button_bg"
+                android:textColor="@color/colorPrimary"/>
 
         </LinearLayout>
     </LinearLayout>

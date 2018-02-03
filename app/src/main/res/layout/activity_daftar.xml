@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:padding="30dp"
     android:gravity="center"
+    android:background="@color/colorPrimary"
     tools:context="com.seladanghijau.uitme_reportstaf.Daftar">
 
     <TextView
@@ -15,31 +16,45 @@
         android:textStyle="bold"
         android:textSize="40sp"
         android:text="UiTM E-Laporan"
+        android:textColor="@color/secondaryColor"
         android:layout_marginBottom="30dp"/>
 
     <EditText
         android:id="@+id/edtKataLaluanBaru"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="15dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Katalaluan baru" />
+        android:hint="Katalaluan baru"
+        android:textColorHint="@color/secondaryColor"
+        android:textColor="@color/secondaryColor"
+        android:background="@drawable/draw_edit_text_bg"
+        android:gravity="center"/>
 
     <EditText
         android:id="@+id/edtKataLaluanBaru2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Konformasi katalaluan baru"
-        android:inputType="textPassword" />
+        android:textColorHint="@color/secondaryColor"
+        android:textColor="@color/secondaryColor"
+        android:background="@drawable/draw_edit_text_bg"
+        android:inputType="textPassword"
+        android:gravity="center"/>
 
     <Button
         android:onClick="onClick"
         android:id="@+id/btnDaftar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="DAFTAR" />
+        android:layout_marginTop="30dp"
+        android:text="DAFTAR"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/draw_button_bg"/>
 
 </LinearLayout>
 

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorPrimary"
     tools:context="com.seladanghijau.uitme_reportstaf.Dashboard">
 
     <TextView
@@ -12,7 +13,8 @@
         android:gravity="center"
         android:textStyle="bold"
         android:textSize="30sp"
-        android:text="UiTM E-Laporan"
+        android:text="UiTM\nE-Laporan"
+        android:textColor="@color/secondaryColor"
         android:layout_marginBottom="20dp"/>
 
     <Button
@@ -22,17 +24,22 @@
         android:id="@+id/btnProfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PROFIL" />
+        android:text="PROFIL"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/draw_button_bg"/>
 
     <Button
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
         android:onClick="onClick"
         android:id="@+id/btnLaporan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="LAPORAN BARU" />
+        android:text="LAPORAN BARU"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/draw_button_bg" />
 
     <android.support.v7.widget.RecyclerView
         android:padding="10dp"
