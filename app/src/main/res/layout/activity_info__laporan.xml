@@ -266,20 +266,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rcyInfoKesalahan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/secondaryColor"/>
-
-            <!--
-            <TextView
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lain-lain kesalahan : " />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Bla bla bla bla" />-->
+                android:layout_height="wrap_content" />
 
             <Button
                 android:onClick="onClick"
