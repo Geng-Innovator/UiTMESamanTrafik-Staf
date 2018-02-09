@@ -1,6 +1,8 @@
 package com.seladanghijau.uitme_reportstaf;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -62,14 +64,22 @@ public class Profil extends AppCompatActivity implements View.OnClickListener{
                     }else{
                         Toast.makeText(Profil.this, "Profil tidak dijumpai", Toast.LENGTH_SHORT).show();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                } catch (JSONException e) { e.printStackTrace(); }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Profil.this, "Profil tidak dijumpai", Toast.LENGTH_SHORT).show();
+                AlertDialog alertDialog = new AlertDialog.Builder(Profil.this)
+                        .setMessage("Profil tidak dijumpai")
+                        .setCancelable(false)
+                        .setPositiveButton("TERUSKAN", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                finish();
+                            }
+                        })
+                        .create();
+                alertDialog.show();
             }
         }){
             @Override
@@ -89,7 +99,22 @@ public class Profil extends AppCompatActivity implements View.OnClickListener{
             case R.id.btnLogOut:
                 SharedPreferences settings = getSharedPreferences(Dashboard.pekerjaPrefs, Context.MODE_PRIVATE);
                 settings.edit().clear().apply();
-                startActivity(new Intent(Profil.this, LogMasuk.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+
+                AlertDialog alertDialog = new AlertDialog.Builder(Profil.this)
+                        .setMessage("Anda pasti ingin log keluar?")
+                        .setCancelable(false)
+                        .setPositiveButton("YA", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                startActivity(new Intent(Profil.this, LogMasuk.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                            }
+                        })
+                        .setNegativeButton("TIDAK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {}
+                        })
+                        .create();
+                alertDialog.show();
                 break;
             case R.id.btnUbahKataLaluan:
                 startActivity(new Intent(Profil.this, Daftar.class));

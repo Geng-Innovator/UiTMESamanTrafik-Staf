@@ -1,6 +1,9 @@
 package com.seladanghijau.uitme_reportstaf;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -90,22 +93,25 @@ public class Laporan_Baru extends AppCompatActivity implements View.OnClickListe
                         spnJenisKenderaan.setAdapter(adapter);
                     }else{
                         //Try again
-                        Toast.makeText(Laporan_Baru.this, "Gagal mengakses internet anda", Toast.LENGTH_SHORT).show();
+                        AlertDialog alertDialog = new AlertDialog.Builder(Laporan_Baru.this)
+                                .setMessage("Gagal mengakses internet anda")
+                                .create();
+                        alertDialog.show();
                     }
 
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                }catch (Exception e){ e.printStackTrace(); }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Gagal mengakses internet anda", Toast.LENGTH_SHORT).show();
+                AlertDialog alertDialog = new AlertDialog.Builder(Laporan_Baru.this)
+                        .setMessage("Gagal mengakses internet anda")
+                        .create();
+                alertDialog.show();
             }
         });
 
         requestQueue.add(spinnerRequest);
-
     }
 
     @Override
@@ -130,6 +136,7 @@ public class Laporan_Baru extends AppCompatActivity implements View.OnClickListe
         }else if (v.getId() == R.id.btnHantar){
             //Send the report
             try{
+                final ProgressDialog pDialog = new ProgressDialog(Laporan_Baru.this);
                 RequestQueue requestQueue = Volley.newRequestQueue(this);
                 String url = getResources().getString(R.string.url_laporan_baru);
                 StringRequest laporanRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -142,23 +149,42 @@ public class Laporan_Baru extends AppCompatActivity implements View.OnClickListe
                             //Get status from the server. 0 - Failed, 1 - Success
                             if (obj.getString("status").equalsIgnoreCase("1")){
                                 //Redirect to dashboard after laporan success
-                                Toast.makeText(getApplicationContext(), "Laporan anda telah dimuat naik. Terima kasih kerana melapor", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(Laporan_Baru.this, Dashboard.class);
-                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(i);
+                                AlertDialog alertDialog = new AlertDialog.Builder(Laporan_Baru.this)
+                                        .setMessage("Laporan anda telah dimuat naik. Terima kasih kerana melapor")
+                                        .setCancelable(false)
+                                        .setPositiveButton("TERUSKAN", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                Intent newIntent = new Intent(Laporan_Baru.this, Dashboard.class);
+                                                newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                startActivity(newIntent);
+                                            }
+                                        })
+                                        .create();
+                                alertDialog.show();
                             }else{
                                 //Try again
-                                Toast.makeText(Laporan_Baru.this, "Laporan anda tidak berjaya", Toast.LENGTH_SHORT).show();
+                                AlertDialog alertDialog = new AlertDialog.Builder(Laporan_Baru.this)
+                                        .setMessage("Gagal melapor")
+                                        .create();
+                                alertDialog.show();
                             }
 
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
+                        }catch (Exception e){ e.printStackTrace(); }
+
+                        if(pDialog.isShowing())
+                            pDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Laporan anda tidak berjaya", Toast.LENGTH_SHORT).show();
+                        AlertDialog alertDialog = new AlertDialog.Builder(Laporan_Baru.this)
+                                .setMessage("Gagal melapor")
+                                .create();
+                        alertDialog.show();
+
+                        if(pDialog.isShowing())
+                            pDialog.dismiss();
                     }
                 }){
                     @Override
@@ -179,16 +205,25 @@ public class Laporan_Baru extends AppCompatActivity implements View.OnClickListe
                             params.put("jenis_kenderaan_id", "" + kenderaanId); //From spinner
                             return params;
                         }else{
-                            Toast.makeText(getApplicationContext(), "Sila isi kesemua informasi", Toast.LENGTH_SHORT).show();
+                            AlertDialog alertDialog = new AlertDialog.Builder(Laporan_Baru.this)
+                                    .setMessage("Sila isi kesemua informasi")
+                                    .create();
+                            alertDialog.show();
                             return null;
                         }
                     }
                 };
 
                 requestQueue.add(laporanRequest);
-
+                pDialog.setMessage("Sedang memuat turun data...");
+                pDialog.setCancelable(false);
+                pDialog.show();
             }catch (Exception e){
-                Toast.makeText(getApplicationContext(), "Anda telah gagal untuk menghantar laporan", Toast.LENGTH_SHORT).show();
+                AlertDialog alertDialog = new AlertDialog.Builder(Laporan_Baru.this)
+                        .setMessage("Anda telah gagal untuk menghantar laporan")
+                        .create();
+                alertDialog.show();
+
                 e.printStackTrace();
             }
         }else{
@@ -216,10 +251,5 @@ public class Laporan_Baru extends AppCompatActivity implements View.OnClickListe
         ByteArrayOutputStream byteArrayOS = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOS);
         return Base64.encodeToString(byteArrayOS.toByteArray(), Base64.DEFAULT);
-    }
-
-    public static Bitmap decodeBase64(String input){
-        byte[] decodeBytes = Base64.decode(input, 0);
-        return BitmapFactory.decodeByteArray(decodeBytes, 0, decodeBytes.length);
     }
 }

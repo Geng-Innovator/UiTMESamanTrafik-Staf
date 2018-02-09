@@ -1,6 +1,9 @@
 package com.seladanghijau.uitme_reportstaf;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -48,6 +51,7 @@ public class Daftar extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         if (v.getId() == R.id.btnDaftar){
             try{
+                final ProgressDialog pDialog = new ProgressDialog(Daftar.this);
                 RequestQueue requestQueue = Volley.newRequestQueue(this);
                 String url = getResources().getString(R.string.url_daftar);
                 StringRequest daftarRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -71,22 +75,42 @@ public class Daftar extends AppCompatActivity implements View.OnClickListener{
                                 editor.apply();
 
                                 //Redirect to dashboard
-                                startActivity(new Intent(Daftar.this, Dashboard.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                                AlertDialog alertDialog = new AlertDialog.Builder(Daftar.this)
+                                        .setMessage("Penukaran katalaluan berjaya")
+                                        .setCancelable(false)
+                                        .setPositiveButton("TERUSKAN", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                startActivity(new Intent(Daftar.this, Dashboard.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                                            }
+                                        })
+                                        .create();
+                                alertDialog.show();
                             }else{
                                 //Redirect to log masuk
-                                Toast.makeText(Daftar.this, "Tukar katalaluan gagal", Toast.LENGTH_SHORT).show();
+                                AlertDialog alertDialog = new AlertDialog.Builder(Daftar.this)
+                                        .setMessage("Penukaran katalaluan gagal")
+                                        .create();
+                                alertDialog.show();
                                 //startActivity(new Intent(Daftar.this, LogMasuk.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                                 finish();
                             }
 
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
+                        }catch (Exception e){ e.printStackTrace(); }
+
+                        if(pDialog.isShowing())
+                            pDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Pendaftaran anda ralat", Toast.LENGTH_SHORT).show();
+                        AlertDialog alertDialog = new AlertDialog.Builder(Daftar.this)
+                                .setMessage("Penukaran katalaluan ralat")
+                                .create();
+                        alertDialog.show();
+
+                        if(pDialog.isShowing())
+                            pDialog.dismiss();
                     }
                 }){
                     @Override
@@ -113,14 +137,19 @@ public class Daftar extends AppCompatActivity implements View.OnClickListener{
                             params.put("new_pass", edtKataLaluan.getText().toString().trim()); //user input password
                             return params;
                         }else{
-                            Toast.makeText(Daftar.this, "Katalaluan anda tidak sama", Toast.LENGTH_SHORT).show();
+                            AlertDialog alertDialog = new AlertDialog.Builder(Daftar.this)
+                                    .setMessage("Katalaluan anda tidak sama")
+                                    .create();
+                            alertDialog.show();
                             return null;
                         }
                     }
                 };
 
                 requestQueue.add(daftarRequest);
-
+                pDialog.setMessage("Sedang menukar katalaluan...");
+                pDialog.setCancelable(false);
+                pDialog.show();
             }catch (Exception e){
                 Toast.makeText(getApplicationContext(), "Terdapat masalah dengan rangkaian internet anda", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();

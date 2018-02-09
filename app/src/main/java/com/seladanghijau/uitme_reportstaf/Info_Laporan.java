@@ -1,5 +1,7 @@
 package com.seladanghijau.uitme_reportstaf;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -12,6 +14,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +43,7 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
     private ImageView imgLaporan;
     private TextView txtPeneranganStaf,txtPeneranganPolis;
     private TextView txtNoKenderaan, txtJenisKenderaan, txtStatusKenderaan, txtPelekatKenderaan;
+    private Button btnKembali;
     private RecyclerView rcyInfoKesalahan;
     private KesalahanAdapter adapter;
     private List<String> kesalahanList = new ArrayList<>();
@@ -61,6 +65,9 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
         txtStatusKenderaan = findViewById(R.id.txtInfoStatusKenderaan);
         txtPelekatKenderaan = findViewById(R.id.txtInfoSiriPelekat);
         imgLaporan = findViewById(R.id.imgInfo);
+        btnKembali = findViewById(R.id.btnInfoKembali);
+
+        btnKembali.setOnClickListener(this);
 
         adapter = new KesalahanAdapter(kesalahanList);
         rcyInfoKesalahan = findViewById(R.id.rcyInfoKesalahan);
@@ -73,6 +80,7 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
     }
 
     public void getLaporan(final String id){
+        final ProgressDialog pDialog = new ProgressDialog(Info_Laporan.this);
         String url = getResources().getString(R.string.url_laporan);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest laporanRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -119,17 +127,26 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
                         }
                     }else{
                         //Try again
-                        Toast.makeText(Info_Laporan.this, "Laporan tidak dijumpai", Toast.LENGTH_SHORT).show();
+                        AlertDialog alertDialog = new AlertDialog.Builder(Info_Laporan.this)
+                                .setMessage("Laporan tidak dijumpai")
+                                .create();
+                        alertDialog.show();
                     }
+                }catch (Exception e){ e.printStackTrace(); }
 
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                if(pDialog.isShowing())
+                    pDialog.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Info_Laporan.this, "Laporan tidak dijumpai", Toast.LENGTH_SHORT).show();
+                AlertDialog alertDialog = new AlertDialog.Builder(Info_Laporan.this)
+                        .setMessage("Laporan tidak dijumpai")
+                        .create();
+                alertDialog.show();
+
+                if(pDialog.isShowing())
+                    pDialog.dismiss();
             }
         }){
             @Override
@@ -139,12 +156,20 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
                 return params;
             }
         };
+
         requestQueue.add(laporanRequest);
+        pDialog.setMessage("Sedang memuat turun data...");
+        pDialog.setCancelable(false);
+        pDialog.show();
     }
 
     @Override
     public void onClick(View v) {
-        //Hello
+        switch(v.getId()) {
+            case R.id.btnInfoKembali:
+                finish();
+                break;
+        }
     }
 
     // asynctask utk load image from url

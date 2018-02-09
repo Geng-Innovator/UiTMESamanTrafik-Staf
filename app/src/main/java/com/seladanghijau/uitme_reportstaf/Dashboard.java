@@ -1,5 +1,7 @@
 package com.seladanghijau.uitme_reportstaf;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -56,6 +58,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     }
 
     private void prepareLaporan(){
+        final ProgressDialog pDialog = new ProgressDialog(Dashboard.this);
         String url = getResources().getString(R.string.url_dashboard);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest laporanRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -84,17 +87,26 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                         }
                     }else{
                         //Try again
-                        Toast.makeText(Dashboard.this, "Gagal mengakses internet anda", Toast.LENGTH_SHORT).show();
+                        AlertDialog alertDialog = new AlertDialog.Builder(Dashboard.this)
+                                .setMessage("Gagal mengakses internet anda")
+                                .create();
+                        alertDialog.show();
                     }
+                }catch (Exception e){ e.printStackTrace(); }
 
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                if(pDialog.isShowing())
+                    pDialog.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Dashboard.this, "Gagal mengakses internet anda", Toast.LENGTH_SHORT).show();
+                AlertDialog alertDialog = new AlertDialog.Builder(Dashboard.this)
+                        .setMessage("Gagal mengakses internet anda")
+                        .create();
+                alertDialog.show();
+
+                if(pDialog.isShowing())
+                    pDialog.dismiss();
             }
         }){
             @Override
@@ -104,7 +116,11 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                 return params;
             }
         };
+
         requestQueue.add(laporanRequest);
+        pDialog.setMessage("Sedang memuat turun data...");
+        pDialog.setCancelable(false);
+        pDialog.show();
     }
 
     @Override

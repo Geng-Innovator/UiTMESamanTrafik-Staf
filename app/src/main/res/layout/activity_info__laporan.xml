@@ -269,14 +269,13 @@
                 android:layout_height="wrap_content" />
 
             <Button
-                android:onClick="onClick"
                 android:layout_marginTop="10dp"
                 android:id="@+id/btnInfoKembali"
                 android:text="KEMBALI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/secondaryColor"
-                android:background="@drawable/draw_edit_text_bg"/>
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/draw_button_bg"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

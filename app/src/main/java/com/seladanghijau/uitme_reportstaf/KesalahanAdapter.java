@@ -37,7 +37,8 @@ public class KesalahanAdapter extends RecyclerView.Adapter<KesalahanAdapter.MyVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.txtKesalahan.setText(list.get(position));
+        if(list != null)
+            holder.txtKesalahan.setText(list.get(position));
     }
 
     @Override
