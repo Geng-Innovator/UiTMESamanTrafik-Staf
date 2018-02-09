@@ -2,11 +2,11 @@
     <string name="app_name">UiTM E-Saman Trafik</string>
 
     <!-- urls -->
-    <string name="url_log_masuk">http://beta.seladanghijau.com/uitm_e_laporan/public/staf/log-masuk</string>
-    <string name="url_daftar">http://beta.seladanghijau.com/uitm_e_laporan/public/staf/reset-password</string>
-    <string name="url_dashboard">http://beta.seladanghijau.com/uitm_e_laporan/public/staf/dashboard</string>
-    <string name="url_laporan">http://beta.seladanghijau.com/uitm_e_laporan/public/staf/laporan/info</string>
-    <string name="url_kenderaan">http://beta.seladanghijau.com/uitm_e_laporan/public/staf/form/laporan/hantar-laporan</string>
-    <string name="url_laporan_baru">http://beta.seladanghijau.com/uitm_e_laporan/public/staf/laporan/hantar-laporan</string>
-    <string name="url_profil">http://beta.seladanghijau.com/uitm_e_laporan/public/staf/profil</string>
+    <string name="url_log_masuk">http://beta.seladanghijau.com/uitm_e_saman_trafik/public/staf/log-masuk</string>
+    <string name="url_daftar">http://beta.seladanghijau.com/uitm_e_saman_trafik/public/staf/reset-password</string>
+    <string name="url_dashboard">http://beta.seladanghijau.com/uitm_e_saman_trafik/public/staf/dashboard</string>
+    <string name="url_laporan">http://beta.seladanghijau.com/uitm_e_saman_trafik/public/staf/laporan/info</string>
+    <string name="url_kenderaan">http://beta.seladanghijau.com/uitm_e_saman_trafik/public/staf/form/laporan/hantar-laporan</string>
+    <string name="url_laporan_baru">http://beta.seladanghijau.com/uitm_e_saman_trafik/public/staf/laporan/hantar-laporan</string>
+    <string name="url_profil">http://beta.seladanghijau.com/uitm_e_saman_trafik/public/staf/profil</string>
 </resources>
