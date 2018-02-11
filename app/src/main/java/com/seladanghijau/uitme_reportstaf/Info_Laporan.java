@@ -2,9 +2,12 @@ package com.seladanghijau.uitme_reportstaf;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -26,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.tooltip.Tooltip;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -36,6 +40,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Info_Laporan extends AppCompatActivity implements View.OnClickListener {
 
@@ -47,6 +53,7 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
     private RecyclerView rcyInfoKesalahan;
     private KesalahanAdapter adapter;
     private List<String> kesalahanList = new ArrayList<>();
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +83,49 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
         rcyInfoKesalahan.setItemAnimator(new DefaultItemAnimator());
         rcyInfoKesalahan.setAdapter(adapter);
 
+        //Tooltip
+        sharedPreferences = getSharedPreferences("pekerjaPref", Context.MODE_PRIVATE);
+        if (sharedPreferences.getString("checkInfo", "").isEmpty()) {
+            showToolTip(0);
+        }
         getLaporan(getIntent().getStringExtra("id"));
+    }
+
+    public void showToolTip(final int i){
+        Tooltip tooltip;
+        switch (i){
+            case 0:
+                tooltip = new Tooltip.Builder(imgLaporan, R.style.Tooltip).setText("GAMBAR LAPORAN").show();
+                break;
+            case 1:
+                tooltip = new Tooltip.Builder(txtLaporanStatus, R.style.Tooltip).setText("STATUS LAPORAN").show();
+                break;
+            case 2:
+                tooltip = new Tooltip.Builder(txtPeneranganStaf, R.style.Tooltip).setText("INFORMASI LAPORAN").show();
+                break;
+            case 3:
+                tooltip = new Tooltip.Builder(txtPeneranganPolis, R.style.Tooltip).setText("INFORMASI LAPORAN MAKLUM BALAS DARIPADA POLIS").show();
+                break;
+            default:
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("checkInfo", "ada");
+                editor.apply();
+                return;
+        }
+        Timer t = new Timer(false);
+        final Tooltip finalTooltip = tooltip;
+        t.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        finalTooltip.dismiss();
+                        int j = i + 1;
+                        showToolTip(j);
+                    }
+                });
+            }
+        }, 2000);
     }
 
     public void getLaporan(final String id){

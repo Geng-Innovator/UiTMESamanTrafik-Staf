@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -29,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.iceteck.silicompressorr.SiliCompressor;
+import com.tooltip.Tooltip;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,18 +40,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class Laporan_Baru extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener{
 
 
     private EditText edtTempat, edtNoKenderaan, edtSiriPelekat, edtPenerangan;
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
     private String img;
     private int kenderaanId;
     private ImageView imgPreview;
     private Spinner spnJenisKenderaan;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,10 +64,50 @@ public class Laporan_Baru extends AppCompatActivity implements View.OnClickListe
         edtPenerangan = findViewById(R.id.edtPenerangan);
         imgPreview = findViewById(R.id.imgReport);
 
+        //Tooltip
+        sharedPreferences = getSharedPreferences("pekerjaPref", Context.MODE_PRIVATE);
+        if (sharedPreferences.getString("checkLaporan", "").isEmpty()) {
+            showToolTip(0);
+        }
+
         //Spinner Drop down elements
         spnJenisKenderaan = findViewById(R.id.spnJenisKenderaan);
         spnJenisKenderaan.setOnItemSelectedListener(this);
         setSpinner();
+    }
+
+    public void showToolTip(final int i){
+        Tooltip tooltip;
+        switch (i){
+            case 0:
+                tooltip = new Tooltip.Builder(imgPreview, R.style.Tooltip).setText("PRATONTON GAMBAR LAPORAN").show();
+                break;
+            case 1:
+                tooltip = new Tooltip.Builder(edtPenerangan, R.style.Tooltip).setText("INFORMASI LAPORAN PERLU DISEDIAKAN").show();
+                break;
+            case 2:
+                tooltip = new Tooltip.Builder((findViewById(R.id.btnMuatGambar)), R.style.Tooltip).setText("MUAT NAIK GAMBAR DI SINI").show();
+                break;
+            default:
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("checkLaporan", "ada");
+                editor.apply();
+                return;
+        }
+        Timer t = new Timer(false);
+        final Tooltip finalTooltip = tooltip;
+        t.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        finalTooltip.dismiss();
+                        int j = i + 1;
+                        showToolTip(j);
+                    }
+                });
+            }
+        }, 2000);
     }
 
     private void setSpinner(){
@@ -192,7 +235,6 @@ public class Laporan_Baru extends AppCompatActivity implements View.OnClickListe
                         Map<String, String> params;
                         if (checkAll()) {
                             //Get id from shared preferences
-                            sharedPreferences = getSharedPreferences(Dashboard.pekerjaPrefs, Context.MODE_PRIVATE);
                             String pekerja_id = sharedPreferences.getString(Dashboard.id, "");
 
                             params = new HashMap<>();
