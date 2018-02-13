@@ -125,7 +125,7 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
                     }
                 });
             }
-        }, 2000);
+        }, 4000);
     }
 
     public void getLaporan(final String id){

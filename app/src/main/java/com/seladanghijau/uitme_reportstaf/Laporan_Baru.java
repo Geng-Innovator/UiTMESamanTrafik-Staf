@@ -107,7 +107,7 @@ public class Laporan_Baru extends AppCompatActivity implements View.OnClickListe
                     }
                 });
             }
-        }, 2000);
+        }, 4000);
     }
 
     private void setSpinner(){
