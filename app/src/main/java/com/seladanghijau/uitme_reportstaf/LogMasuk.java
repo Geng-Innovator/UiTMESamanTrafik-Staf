@@ -163,6 +163,4 @@ public class LogMasuk extends AppCompatActivity implements View.OnClickListener{
             }
         }
     }
-
-
 }
