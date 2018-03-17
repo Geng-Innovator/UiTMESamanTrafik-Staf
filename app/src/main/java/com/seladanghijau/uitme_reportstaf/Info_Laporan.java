@@ -157,6 +157,12 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
                             case "DIKUATKUASAKAN":
                                 txtLaporanStatus.setBackground(getResources().getDrawable(R.drawable.status_laporan_dikuatkuasakan));
                                 break;
+                            case "DITUTUPKAN":
+                                txtLaporanStatus.setBackground(getResources().getDrawable(R.drawable.status_laporan_ditutup));
+                                break;
+                            default:
+                                txtLaporanStatus.setBackground(getResources().getDrawable(R.drawable.status_laporan_ditutup));
+                                break;
                         }
 
                         txtLaporanID.setText(data.getString("id"));
