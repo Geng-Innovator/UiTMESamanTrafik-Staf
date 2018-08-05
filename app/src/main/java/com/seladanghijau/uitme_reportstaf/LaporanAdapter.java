@@ -94,6 +94,9 @@ public class LaporanAdapter extends RecyclerView.Adapter<LaporanAdapter.MyViewHo
             case "DIKUATKUASAKAN":
                 holder.txtStatus.setBackground(context.getDrawable(R.drawable.status_laporan_dikuatkuasakan));
                 break;
+            case "DITUTUP":
+                holder.txtStatus.setBackground(context.getDrawable(R.drawable.status_laporan_ditutup));
+                break;
         }
 
         holder.setItemClickListener(new ItemClickListener() {
