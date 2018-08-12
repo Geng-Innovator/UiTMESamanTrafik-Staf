@@ -167,6 +167,7 @@ public class Info_Laporan extends AppCompatActivity implements View.OnClickListe
 
                         txtLaporanID.setText(data.getString("id"));
                         txtLaporanStatus.setText(data.getString("laporan_status"));
+                        txtLaporanTarikh.setText(data.getString("laporan_tarikh"));
                         txtLaporanMasa.setText(data.getString("laporan_masa"));
                         txtLaporanTempat.setText(data.getString("laporan_tempat"));
                         txtPeneranganStaf.setText(data.getString("staf_penerangan"));
